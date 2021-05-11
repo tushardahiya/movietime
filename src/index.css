@@ -4,11 +4,33 @@
   box-sizing: border-box;
 }
 
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   background-color: #22254b;
   color: white;
   font-family: "Montserrat", sans-serif;
   margin: 0;
+}
+
+header {
+  background-color: #373b69;
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search {
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: 2px solid #22254b;
+  border-radius: 50px;
+  background-color: transparent;
+  color: 1.2rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .movie-container {
@@ -21,8 +43,9 @@ body {
   border-radius: 3px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   margin: 1rem;
-  width: 250px;
   overflow: hidden;
+  position: relative;
+  width: 300px;
 }
 
 .movie img {
@@ -38,4 +61,25 @@ body {
 
 .movie-info h3 {
   margin: 0;
+}
+
+.movie-overview {
+  background-color: white;
+  color: #22254b;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  max-height: 100%;
+  transform: translateY(102%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.movie:hover .movie-overview {
+  transform: translateY(0%);
 }
