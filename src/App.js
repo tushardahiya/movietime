@@ -38,6 +38,7 @@ function App() {
   return (
     <>
       <header>
+        <h3>Movie Time</h3>
         <form onSubmit={handleOnSubmit}>
           <input
             className="search"
