@@ -25,6 +25,10 @@ header {
   align-items: center;
 }
 
+header div {
+  cursor: pointer;
+}
+
 header h3 {
   margin: 5px;
 }

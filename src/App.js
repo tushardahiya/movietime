@@ -28,6 +28,8 @@ function App() {
     if (searchTerm) {
       getMovies(SEARCH_API + searchTerm);
       setSearchTerm("");
+    } else {
+      getMovies(FEATURED_API);
     }
   };
 
@@ -38,7 +40,13 @@ function App() {
   return (
     <>
       <header>
-        <h3>Movie Time</h3>
+        <div
+          onClick={() => {
+            getMovies(FEATURED_API);
+          }}
+        >
+          <h3>Movie Time</h3>
+        </div>
         <form onSubmit={handleOnSubmit}>
           <input
             className="search"
