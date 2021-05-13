@@ -17,7 +17,6 @@ function App() {
     fetch(API)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMovies(data.results);
       });
   };
@@ -41,7 +40,6 @@ function App() {
   };
 
   const handleDetailModal = (id) => {
-    console.log(id);
     setShowModal(!showModal);
     setModalId(id);
   };

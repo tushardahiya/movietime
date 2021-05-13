@@ -36,6 +36,7 @@ const Movie = ({
       <div className="movie-overview ">
         <h2>Overview :</h2>
         <p>{overview}</p>
+        <h2>CLICK FOR MORE INFO</h2>
       </div>
     </div>
   );
