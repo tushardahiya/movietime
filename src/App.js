@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Details from "./components/Details";
 import Movie from "./components/Movie";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -9,6 +10,8 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalId, setModalId] = useState("");
 
   const getMovies = (API) => {
     fetch(API)
@@ -37,6 +40,16 @@ function App() {
     setSearchTerm(e.target.value);
   };
 
+  const handleDetailModal = (id) => {
+    console.log(id);
+    setShowModal(!showModal);
+    setModalId(id);
+  };
+
+  const hideModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <header>
@@ -59,8 +72,15 @@ function App() {
       </header>
       <div className="movie-container">
         {movies.length > 0 &&
-          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
+          movies.map((movie) => (
+            <Movie
+              key={movie.id}
+              {...movie}
+              handleClick={(id) => handleDetailModal(id)}
+            />
+          ))}
       </div>
+      {showModal ? <Details id={modalId} closeModal={hideModal} /> : null}
     </>
   );
 }
