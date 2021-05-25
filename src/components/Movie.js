@@ -1,7 +1,7 @@
 import React from "react";
 import fallbackimage from "../assets/image_not_found.png";
 
-const IMG_API = "https://image.tmdb.org/t/p/w1280";
+const IMG_API = "https://image.tmdb.org/t/p/w780";
 
 const setVoteClass = (vote) => {
   if (vote >= 8) {

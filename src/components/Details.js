@@ -79,7 +79,11 @@ const Details = ({ id, closeModal }) => {
                 <div key={el.id} className="cast-card">
                   <img
                     className="cast-image"
-                    src={`${SMALL_IMG_API}${el.profile_path}`}
+                    src={
+                      el.profile_path
+                        ? SMALL_IMG_API + el.profile_path
+                        : fallbackimage
+                    }
                     alt="cast"
                   />
                   <h4>{el.name}</h4>
