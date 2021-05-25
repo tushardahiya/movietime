@@ -3,7 +3,8 @@ import fallbackimage from "../assets/image_not_found.png";
 import "./Details.css";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const IMG_API = "https://image.tmdb.org/t/p/w1280";
+const IMG_API = "https://image.tmdb.org/t/p/w780";
+const SMALL_IMG_API = "https://image.tmdb.org/t/p/w185";
 
 const Details = ({ id, closeModal }) => {
   const [movieDetails, setMovieDetails] = useState(null);
@@ -52,7 +53,7 @@ const Details = ({ id, closeModal }) => {
               <img
                 src={
                   movieDetails.poster_path
-                    ? IMG_API + movieDetails.poster_path
+                    ? SMALL_IMG_API + movieDetails.poster_path
                     : fallbackimage
                 }
                 alt="404 poster not found"
@@ -78,7 +79,7 @@ const Details = ({ id, closeModal }) => {
                 <div key={el.id} className="cast-card">
                   <img
                     className="cast-image"
-                    src={`${IMG_API}${el.profile_path}`}
+                    src={`${SMALL_IMG_API}${el.profile_path}`}
                     alt="cast"
                   />
                   <h4>{el.name}</h4>

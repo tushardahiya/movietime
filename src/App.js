@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Details from "./components/Details";
 import Movie from "./components/Movie";
+import { Route } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -10,8 +12,10 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showModal, setShowModal] = useState(false);
+
   const [modalId, setModalId] = useState("");
+  const history = useHistory();
+  const location = useLocation();
 
   const getMovies = (API) => {
     fetch(API)
@@ -40,12 +44,12 @@ function App() {
   };
 
   const handleDetailModal = (id) => {
-    setShowModal(!showModal);
     setModalId(id);
+    history.push("/details");
   };
 
   const hideModal = () => {
-    setShowModal(false);
+    history.push("/");
   };
 
   return (
@@ -78,15 +82,19 @@ function App() {
             />
           ))}
       </div>
-      {showModal ? <Details id={modalId} closeModal={hideModal} /> : null}
+
+      {modalId === "" && location.pathname === "/details" ? (
+        history.push("/")
+      ) : (
+        <Route
+          path="/details"
+          render={() => <Details id={modalId} closeModal={hideModal} />}
+        />
+      )}
+
+      {/* {showModal ? <Details id={modalId} closeModal={hideModal} /> : null} */}
     </>
   );
 }
 
 export default App;
-
-//API Key (v3 auth)
-//1e3d27f0aefcf69a0745ea2244e98e1e
-
-// example API request
-// https://api.themoviedb.org/3/movie/550?api_key=1e3d27f0aefcf69a0745ea2244e98e1e
